@@ -1,9 +1,9 @@
 package springbook.user.dao;
 
 import org.junit.Test;
-import org.junit.runner.JUnitCore;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.dao.EmptyResultDataAccessException;
 import springbook.user.domain.User;
 
 import java.sql.SQLException;
@@ -74,5 +74,16 @@ public class UserDaoTestkk {
 
         System.out.println("count() Success!");
 
+    }
+
+    @Test(expected = EmptyResultDataAccessException.class)
+    public void getUserFailure() throws SQLException, ClassNotFoundException {
+        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
+
+        UserDao dao = context.getBean("userDao3", UserDao.class);
+        dao.deleteAll();
+        assertThat(dao.getCount(), is(0));
+
+        dao.get("unknown_id");
     }
 }
