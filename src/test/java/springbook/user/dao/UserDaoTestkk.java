@@ -1,5 +1,6 @@
 package springbook.user.dao;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
@@ -12,12 +13,17 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 public class UserDaoTestkk {
+    private UserDao dao;
+
+    @Before
+    public void setUp() {
+        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
+        this.dao = context.getBean("userDao3", UserDao.class);
+    }
 
     @Test
     public void andAndGet() throws Exception {
-        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
 
-        UserDao dao = context.getBean("userDao3", UserDao.class);
 
         User user1 = new User("gyumee", "박성철", "springno1");
         User user2 = new User("leegw700", "이길원", "springno2");
@@ -52,9 +58,7 @@ public class UserDaoTestkk {
 
     @Test
     public void count() throws SQLException, ClassNotFoundException {
-        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
 
-        UserDao dao = context.getBean("userDao3", UserDao.class);
 
         User user1 = new User("gyumee", "박성철", "springno1");
         User user2 = new User("taehee", "김태희", "미모2");
