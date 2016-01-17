@@ -5,23 +5,27 @@ import org.junit.runner.JUnitCore;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import springbook.user.domain.User;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 public class UserDaoTestkk {
+
     @Test
     public void andAndGet() throws Exception {
         ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
 
         UserDao dao = context.getBean("userDao3", UserDao.class);
 
+        dao.deleteAll();
+        assertThat(dao.getCount(), is(0));
+
         User user = new User();
-        user.setId("gyumee222");
+        user.setId("gyumee");
         user.setName("박성철");
-        user.setPassword("springno21");
+        user.setPassword("springno1");
 
         dao.add(user);
+        assertThat(dao.getCount(), is(1));
 
         User user2 = dao.get(user.getId());
 
@@ -38,6 +42,8 @@ public class UserDaoTestkk {
         us2.setId("d");
 
         System.out.println(us2.getId());
+
+
 
     }
 
