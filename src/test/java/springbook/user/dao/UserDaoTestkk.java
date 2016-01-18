@@ -25,18 +25,23 @@ public class UserDaoTestkk {
 
     private UserDao dao;
 
+    private User user1;
+    private User user2;
+    private User user3;
+
     @Before
     public void setUp() {
         this.dao = context.getBean("userDao3", UserDao.class);
+
+        this.user1 = new User("gyumee", "박성철", "springno1");
+        this.user2 = new User("leegw700", "이길원", "springno2");
+        this.user3 = new User("bumjin", "박범진", "springno3");
+        System.out.println(this.context);
+        System.out.println(this);
     }
 
     @Test
     public void andAndGet() throws Exception {
-
-
-        User user1 = new User("gyumee", "박성철", "springno1");
-        User user2 = new User("leegw700", "이길원", "springno2");
-
 
         dao.deleteAll();
         assertThat(dao.getCount(), is(0));
@@ -67,11 +72,6 @@ public class UserDaoTestkk {
 
     @Test
     public void count() throws SQLException, ClassNotFoundException {
-
-
-        User user1 = new User("gyumee", "박성철", "springno1");
-        User user2 = new User("taehee", "김태희", "미모2");
-        User user3 = new User("jihyun", "전지현", "미모3");
 
         dao.deleteAll();
         assertThat(dao.getCount(), is(0));
