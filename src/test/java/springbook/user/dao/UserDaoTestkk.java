@@ -17,7 +17,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/applicationContext.xml")
+@ContextConfiguration("classpath:/test-applicationContext.xml")
 public class UserDaoTestkk {
 
     @Autowired
@@ -91,7 +91,7 @@ public class UserDaoTestkk {
 
     @Test(expected = EmptyResultDataAccessException.class)
     public void getUserFailure() throws SQLException, ClassNotFoundException {
-        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
+        ApplicationContext context = new GenericXmlApplicationContext("test-applicationContext.xml");
 
         UserDao dao = context.getBean("userDao3", UserDao.class);
         dao.deleteAll();
