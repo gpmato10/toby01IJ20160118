@@ -105,6 +105,9 @@ public class UserDaoTestkk {
     public void getAll() {
         dao.deleteAll();
 
+        List<User> users0 = dao.getAll();
+        assertThat(users0.size(), is(0));
+
         dao.add(user1); // id : gyumee
         List<User> users1 = dao.getAll();   // id 순서 (알파팻) 순서대로 정렬됨.
         assertThat(users1.size(), is(1));
